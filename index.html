@@ -2,30 +2,142 @@
 <html lang="de">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="FU5x9KZOiNeIMoi-hQfvSxN5_rJMtJ_XcauKzjgH7eY">
+<!-- Mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Portfolio</title>
+<!-- Google Site Verification -->
+<meta name="google-site-verification" content="FU5x9KZOiNeIMoi-hQfvSxN5_rJMtJ_XcauKzjgH7eY">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXVWP23GMY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
+<title>Portfolio</title>
 
-        gtag('js', new Date());
-        gtag('config', 'G-HXVWP23GMY');
-    </script>
+<link rel="stylesheet" href="style.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HXVWP23GMY"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+gtag('js', new Date());
+gtag('config', 'G-HXVWP23GMY');
+</script>
 
 </head>
 
+
 <body>
 
-    <h1>Mein Portfolio</h1>
-    <p>Willkommen auf meiner Webseite.</p>
+<header class="hero">
+
+<h1>Mein Portfolio</h1>
+<p>Ich baue einfache Websites und experimentiere mit Code.</p>
+
+<a class="button" href="#game">Spiel starten</a>
+
+</header>
+
+
+<section class="features">
+
+<div class="card">
+<h2>Schnell</h2>
+<p>Schnelle Webseiten ohne unnötige Frameworks.</p>
+</div>
+
+<div class="card">
+<h2>Modern</h2>
+<p>Modernes HTML und CSS, mobile-optimiert.</p>
+</div>
+
+<div class="card">
+<h2>Interaktiv</h2>
+<p>Kleine Animationen und Mini-Games.</p>
+</div>
+
+</section>
+
+
+<section id="game" class="game">
+
+<h2>Click Challenge</h2>
+
+<p>Klicke so oft du kannst in 10 Sekunden!</p>
+
+<div class="score">Score: <span id="score">0</span></div>
+<div class="timer">Zeit: <span id="time">10</span></div>
+
+<button id="start">Start</button>
+<button id="restart">Restart</button>
+
+</section>
+
+
+<footer>
+
+<p>Kontakt:</p>
+
+<a href="mailto:mail@example.com">mail@example.com</a>
+
+</footer>
+
+
+<script>
+
+let score = 0
+let time = 10
+let gameActive = false
+let timer
+
+const scoreEl = document.getElementById("score")
+const timeEl = document.getElementById("time")
+const startBtn = document.getElementById("start")
+const restartBtn = document.getElementById("restart")
+
+function startGame(){
+
+score = 0
+time = 10
+gameActive = true
+
+scoreEl.textContent = score
+timeEl.textContent = time
+
+timer = setInterval(()=>{
+
+time--
+timeEl.textContent = time
+
+if(time <= 0){
+clearInterval(timer)
+gameActive = false
+alert("Zeit vorbei! Dein Score: " + score)
+}
+
+},1000)
+
+}
+
+document.body.addEventListener("click", ()=>{
+
+if(gameActive){
+score++
+scoreEl.textContent = score
+}
+
+})
+
+startBtn.addEventListener("click", startGame)
+
+restartBtn.addEventListener("click", ()=>{
+
+clearInterval(timer)
+startGame()
+
+})
+
+</script>
 
 </body>
-
 </html>
